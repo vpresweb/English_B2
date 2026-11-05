@@ -1,0 +1,11 @@
+{
+  "name": "english-b2",
+  "version": "1.0.0",
+  "description": "Курс английского языка B2 по методу Фейнмана",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}

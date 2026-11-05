@@ -1,0 +1,18 @@
+{
+  "name": "English B2 · by Feynman",
+  "short_name": "EN B2",
+  "description": "Курс английского языка — уровень B2, 12 недель по методу Фейнмана",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#14285a",
+  "theme_color": "#14285a",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

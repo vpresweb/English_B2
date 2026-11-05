@@ -1,0 +1,141 @@
+/* English by Feynman B2 — дизайн курсов A1/A2, британская палитра. */
+:root {
+  --bg: #f5f6f9; --surface: #ffffff; --surface-2: #eef0f5; --border: #dde1ea;
+  --text: #1c2230; --muted: #5f6878; --accent: #14285a; --accent-2: #c8102e;
+  --accent-soft: #e7ecf6; --warn-soft: #fdf1dc; --warn: #8a5a00;
+  --ok: #0a7a3e; --bad: #b3261e; --ok-soft: #e5f4ea; --bad-soft: #fbe9e7;
+  --on-accent: #ffffff;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 16px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #13161d; --surface: #1b1f28; --surface-2: #242a35; --border: #333b48;
+    --text: #e6e8ee; --muted: #9aa3b2; --accent: #8fb0ff; --accent-2: #ff6b7d;
+    --accent-soft: #1d2740; --warn-soft: #33291a; --warn: #f0bf6a;
+    --ok: #5fd18f; --bad: #ff8a80; --ok-soft: #1b3024; --bad-soft: #3a1f1d;
+    --on-accent: #0d1424;
+    --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #13161d; --surface: #1b1f28; --surface-2: #242a35; --border: #333b48;
+  --text: #e6e8ee; --muted: #9aa3b2; --accent: #8fb0ff; --accent-2: #ff6b7d;
+  --accent-soft: #1d2740; --warn-soft: #33291a; --warn: #f0bf6a;
+  --ok: #5fd18f; --bad: #ff8a80; --ok-soft: #1b3024; --bad-soft: #3a1f1d;
+  --on-accent: #0d1424;
+  --shadow: none;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 15px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); }
+.wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+
+/* ── ШАПКА ── */
+header h1 { font-family: Lora, Georgia, serif; font-size: clamp(22px, 4vw, 32px); margin: 0 0 4px; line-height: 1.2; }
+header .sub { font-size: 12px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; font-weight: 600; }
+.top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.theme-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 8px; padding: 6px 10px; cursor: pointer; font: inherit; font-size: 13px; flex: none; }
+
+/* ── НЕДЕЛИ И ВКЛАДКИ ── */
+.weeks { display: flex; gap: 6px; overflow-x: auto; padding: 16px 0 8px; scrollbar-width: thin; }
+.weeks button { flex: none; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 13px; cursor: pointer; white-space: nowrap; }
+.weeks button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.weeks button .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); margin-left: 6px; vertical-align: middle; }
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--border); margin: 8px 0 20px; }
+.tabs button { border: 0; background: none; color: var(--muted); padding: 10px 12px; font: inherit; font-size: 14px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tabs button.on { color: var(--text); border-bottom-color: var(--accent-2); font-weight: 600; }
+
+/* ── КАРТОЧКИ ── */
+.week-title { font-family: Lora, Georgia, serif; font-size: 22px; margin: 0 0 4px; }
+.week-tag { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; box-shadow: var(--shadow); }
+.label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+.goal h3 { margin: 0 0 6px; font-size: 17px; }
+.goal p { margin: 0; }
+.hint { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+/* ── ПЛАН ── */
+.day { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid var(--border); }
+.label + .day { border-top: 0; }
+.day .d { font-weight: 700; color: var(--accent); font-size: 13px; padding-top: 2px; }
+.day h4 { margin: 0 0 6px; font-size: 15px; }
+.day ul { margin: 0; padding: 0; list-style: none; }
+.day li { display: flex; gap: 8px; align-items: flex-start; padding: 2px 0; }
+.day li input { margin-top: 4px; accent-color: var(--accent); flex: none; }
+.day li.done span { color: var(--muted); text-decoration: line-through; }
+.prog-row { display: grid; grid-template-columns: minmax(120px, 200px) 1fr 48px; gap: 12px; align-items: center; padding: 6px 0; }
+.bar { height: 8px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); border-radius: 99px; transition: width .4s; }
+.prog-row .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; }
+
+/* ── ТЕОРИЯ ── */
+.content h3 { font-size: 17px; margin: 22px 0 8px; }
+.content h3:first-child { margin-top: 0; }
+.content p { margin: 0 0 10px; }
+.content ul { padding-left: 20px; margin: 0 0 10px; }
+.ex { display: flex; flex-direction: column; border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 8px 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.ex b { font-weight: 600; align-self: flex-start; }
+.ex span { color: var(--muted); font-size: 13.5px; }
+.note { background: var(--warn-soft); border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: 14px; }
+.note strong { color: var(--warn); }
+.tbl-wrap { overflow-x: auto; margin: 10px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 420px; }
+th, td { border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { background: var(--surface-2); font-weight: 600; font-size: 13px; }
+td em { color: var(--accent-2); font-style: normal; font-weight: 600; }
+.timeline { display: flex; align-items: center; margin: 14px 0 6px; overflow-x: auto; padding-bottom: 4px; }
+.timeline .pt { flex: 1; min-width: 110px; text-align: center; position: relative; padding-top: 22px; font-size: 13px; }
+.timeline .pt::before { content: ""; position: absolute; top: 8px; left: 0; right: 0; height: 2px; background: var(--border); }
+.timeline .pt::after { content: ""; position: absolute; top: 3px; left: 50%; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--accent); }
+.timeline .pt.hl::after { background: var(--accent-2); }
+.timeline .pt b { display: block; }
+.timeline .pt span { color: var(--muted); }
+
+/* ── ДИАЛОГ ── */
+.dlg { display: flex; flex-direction: column; gap: 10px; }
+.line { display: flex; gap: 10px; align-items: flex-start; }
+.line.r { flex-direction: row-reverse; }
+.who { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+.line.r .who { background: var(--accent-2); color: #fff; }
+.bub { background: var(--surface-2); border-radius: 12px; padding: 8px 12px; max-width: 78%; }
+.bub .en { font-weight: 500; }
+.bub .ru { color: var(--muted); font-size: 13px; display: none; }
+.show-ru .bub .ru { display: block; }
+
+/* ── КНОПКИ И ТЕСТ ── */
+.btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 8px; padding: 7px 12px; font: inherit; font-size: 13.5px; cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.q { padding: 14px 0; border-top: 1px solid var(--border); }
+.q:first-child { border-top: 0; padding-top: 0; }
+.q p { margin: 0 0 8px; font-weight: 500; }
+.opts { display: flex; flex-direction: column; gap: 6px; }
+.opts label { display: flex; gap: 8px; align-items: center; border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; cursor: pointer; }
+.opts input { accent-color: var(--accent); }
+.opts label.right { border-color: var(--ok); background: var(--ok-soft); }
+.opts label.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.exp { font-size: 13.5px; color: var(--muted); margin-top: 6px; display: none; }
+.checked .exp { display: block; }
+.score { font-size: 18px; font-weight: 700; margin-top: 12px; }
+textarea { width: 100%; min-height: 140px; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 8px; padding: 10px; font: inherit; resize: vertical; }
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding: 8px 0; }
+.steps li::before { content: counter(s); width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+
+/* ── ОЗВУЧКА ── */
+.say { cursor: pointer; -webkit-tap-highlight-color: transparent; border-radius: 4px; transition: background .2s, box-shadow .2s; }
+@media (hover: hover) { .say:hover { text-decoration: underline dotted; text-underline-offset: 3px; } }
+.say.saying { background: var(--warn-soft); box-shadow: 0 0 0 2px var(--warn); }
+.speech-note { background: var(--warn-soft); border-radius: 8px; padding: 10px 14px; font-size: 13px; }
+
+footer { color: var(--muted); font-size: 12px; margin-top: 32px; text-align: center; line-height: 1.7; }
+
+@media (max-width: 560px) {
+  .card { padding: 14px; }
+  .day { grid-template-columns: 1fr; gap: 4px; }
+  .prog-row { grid-template-columns: 1fr 44px; }
+  .prog-row .bar { grid-column: 1 / -1; grid-row: 2; }
+  .bub { max-width: 86%; }
+}
